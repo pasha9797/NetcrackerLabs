@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Netcracker.iml" filepath="$PROJECT_DIR$/Netcracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/people/people.iml" filepath="$PROJECT_DIR$/people/people.iml" />
+    </modules>
+  </component>
+</project>
