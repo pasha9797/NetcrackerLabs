@@ -8,14 +8,19 @@ import java.util.Arrays;
 public class Repository {
     private Person[] people;
 
+    /**
+     * Get whole array of people
+     * @return array of people
+     */
     public Person[] getPeople() {
         return people;
     }
 
-    public void setPeople(Person[] people) {
-        this.people = people;
-    }
-
+    /**
+     * Add person to repository
+     * @param person person to be added
+     * @return true in case of success, false in case of failure
+     */
     public boolean add(Person person){
         if(get(person.getId())!=null)
             return false;
@@ -27,6 +32,11 @@ public class Repository {
         return true;
     }
 
+    /**
+     * Delete person from repository
+     * @param person Person to be deleted
+     * @return true in case of success, false in case of failure
+     */
     public boolean delete(Person person){
         if(person==null){
             return false;
@@ -48,11 +58,21 @@ public class Repository {
         return true;
     }
 
+    /**
+     * Delete person from repository by ID
+     * @param id ID of person to be deleted
+     * @return true in case of success, false in case of failure
+     */
     public boolean delete(long id){
         Person person = get(id);
         return delete(person);
     }
 
+    /**
+     * Delete person from repository by name
+     * @param fullName name of person to be deleted
+     * @return true in case of success, false in case of failure
+     */
     public boolean delete(String fullName){
         Person person = get(fullName);
         return delete(person);

@@ -2,6 +2,9 @@ package vsu.netcracker.model;
 
 import org.joda.time.LocalDate;
 
+/**
+ * Person is a class that contains description of person
+ */
 public class Person {
     private long id;
     private String fullName;
@@ -31,6 +34,10 @@ public class Person {
         this.birthDate = birthDate;
     }
 
+    /**
+     * Method to get person's age in years
+     * @return age in years
+     */
     public int getAge(){
         LocalDate now=LocalDate.now();
         int age = now.getYear() - birthDate.getYear();

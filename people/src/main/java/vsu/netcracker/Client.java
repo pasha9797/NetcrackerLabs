@@ -41,13 +41,19 @@ public class Client {
         }
     }
 
+    /**
+     * Prints all people in repository
+     */
     private static void printPeople(){
         for(int i=0;i<repository.getPeople().length;i++){
-            System.out.println(repository.getPeople()[i].toString());
+            System.out.println(repository.getPeople()[i].toString()+", Age: "+repository.getPeople()[i].getAge()+" years");
         }
         System.out.println();
     }
 
+    /**
+     * Handles add command via console
+     */
     private static void parseAdd(){
         System.out.println("Write id, full name (first name and last name) and a birth date (format year-month-day)");
         int id;
@@ -77,6 +83,10 @@ public class Client {
         if(!result)
             System.out.println("Error: This ID already exists.");
     }
+
+    /**
+     * Handles delete command via console
+     */
     private static void parseDelete(){
         int id;
         System.out.println("Write abonent ID");
@@ -96,6 +106,10 @@ public class Client {
             return;
         }
     }
+
+    /**
+     * Handles delete by name command via console
+     */
     private static void parseDeleteByName(){
         String name;
         System.out.println("Write name.");
