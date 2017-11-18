@@ -1,6 +1,5 @@
 package vsu.netcracker;
 
-import org.joda.time.LocalDate;
 import vsu.netcracker.model.Person;
 import vsu.netcracker.model.Repository;
 
@@ -55,10 +54,8 @@ public class Client {
      * Handles add command via console
      */
     private static void parseAdd(){
-        System.out.println("Write id, full name (first name and last name) and a birth date (format year-month-day)");
-        int id;
-        LocalDate birthDate;
-        String fullName,str;
+        System.out.println("Write id, full name (first name and last name) and a birth date (format day-month-year)");
+        String str;
 
         str=in.nextLine();
         String[] parts = str.split(" ");
@@ -66,22 +63,21 @@ public class Client {
             System.out.println("Error: Too much or not enough data.");
             return;
         }
-        id=Integer.decode(parts[0]);
-        fullName=parts[1]+" "+parts[2];
+
+        Person person = new Person();
         try {
-            birthDate = LocalDate.parse(parts[3]);
+            person.setId(Integer.decode(parts[0]));
+            person.setFullName(parts[1]+" "+parts[2]);
+            person.setBirthDate(parts[3]);
         }
         catch(Exception e){
-            System.out.println("Error: Wrong birth date format.");
+            System.out.println("Error: "+e.getMessage());
             return;
         }
-        Person person = new Person();
-        person.setId(id);
-        person.setFullName(fullName);
-        person.setBirthDate(birthDate);
+
         boolean result=repository.add(person);
         if(!result)
-            System.out.println("Error: This ID already exists.");
+            System.out.println("Error in input information: This ID already exists.");
     }
 
     /**

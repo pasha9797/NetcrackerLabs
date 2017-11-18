@@ -1,6 +1,7 @@
 package vsu.netcracker.model;
 
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 
 /**
  * Person is a class that contains description of person
@@ -26,12 +27,12 @@ public class Person {
         this.fullName = fullName;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    /**
+     * Set the birth date from string
+     * @param birthDate string containing birth date
+     */
+    public void setBirthDate(String birthDate){
+            this.birthDate = LocalDate.parse(birthDate, DateTimeFormat.forPattern("d-M-YYYY"));
     }
 
     /**
@@ -71,7 +72,7 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", full name='" + fullName + '\'' +
-                ", birth date=" + birthDate +
-                '}';
+                ", birth date='" + birthDate.toString(DateTimeFormat.forPattern("d MMM YYYY")) +
+                "'}";
     }
 }
