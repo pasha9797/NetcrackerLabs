@@ -52,6 +52,12 @@ public class Person {
 
     }
 
+    public Person(long id, String fullName, String birthDate){
+        setId(id);
+        setFullName(fullName);
+        setBirthDate(birthDate);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -10,8 +10,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Netcracker" target="1.5" />
-      <module name="people" target="1.5" />
+      <module name="Netcracker" target="1.8" />
+      <module name="people" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
