@@ -1,4 +1,5 @@
 package vsu.netcracker.model;
+
 import org.junit.*;
 import vsu.netcracker.util.Sorts;
 
@@ -27,15 +28,15 @@ public class RepositoryTest {
         expected = null;
     }
 
-    private void initializeTwoCopies(){
-        expected=new Repository(original);
-        actual=new Repository(original);
+    private void initializeTwoCopies() {
+        expected = new Repository(original);
+        actual = new Repository(original);
     }
 
     @Test
-    public void testBubbleSort(){
+    public void testBubbleSort() {
         initializeTwoCopies();
-        Comparator<Person> c = (o1,o2) -> (int)(o1.getId()-o2.getId());
+        Comparator<Person> c = (o1, o2) -> (int) (o1.getId() - o2.getId());
 
         Arrays.sort(expected.getPeople(), c);
         actual.sort(c, Sorts.SortTypes.BUBBLE);
@@ -44,9 +45,9 @@ public class RepositoryTest {
     }
 
     @Test
-    public void testQuickSort(){
+    public void testQuickSort() {
         initializeTwoCopies();
-        Comparator<Person> c = (o1,o2) -> (int)(o1.getId()-o2.getId());
+        Comparator<Person> c = (o1, o2) -> (int) (o1.getId() - o2.getId());
 
         Arrays.sort(expected.getPeople(), c);
         actual.sort(c, Sorts.SortTypes.QUICK);
@@ -55,9 +56,9 @@ public class RepositoryTest {
     }
 
     @Test
-    public void testInsertionSort(){
+    public void testInsertionSort() {
         initializeTwoCopies();
-        Comparator<Person> c = (o1,o2) -> (int)(o1.getId()-o2.getId());
+        Comparator<Person> c = (o1, o2) -> (int) (o1.getId() - o2.getId());
 
         Arrays.sort(expected.getPeople(), c);
         actual.sort(c, Sorts.SortTypes.INSERTION);
@@ -66,18 +67,18 @@ public class RepositoryTest {
     }
 
     @Test
-    public void testSearch(){
+    public void testSearch() {
         actual = new Repository();
         actual.add(new Person(0, "A", "1-1-1991"));
         actual.add(new Person(1, "B", "1-1-1995"));
         actual.add(new Person(2, "C", "1-1-1999"));
         actual.add(new Person(3, "D", "1-1-1990"));
 
-        expected= new Repository();
+        expected = new Repository();
         expected.add(new Person(1, "B", "1-1-1995"));
         expected.add(new Person(2, "C", "1-1-1999"));
 
-        actual = actual.search((a)->a.getAge()<25);
+        actual = actual.search((a) -> a.getAge() < 25);
 
         Assert.assertArrayEquals(expected.getPeople(), actual.getPeople());
     }

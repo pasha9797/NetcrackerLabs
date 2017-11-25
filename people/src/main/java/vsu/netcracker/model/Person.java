@@ -29,30 +29,32 @@ public class Person {
 
     /**
      * Set the birth date from string
+     *
      * @param birthDate string containing birth date
      */
-    public void setBirthDate(String birthDate){
-            this.birthDate = LocalDate.parse(birthDate, DateTimeFormat.forPattern("d-M-YYYY"));
+    public void setBirthDate(String birthDate) {
+        this.birthDate = LocalDate.parse(birthDate, DateTimeFormat.forPattern("d-M-YYYY"));
     }
 
     /**
      * Method to get person's age in years
+     *
      * @return age in years
      */
-    public int getAge(){
-        LocalDate now=LocalDate.now();
+    public int getAge() {
+        LocalDate now = LocalDate.now();
         int age = now.getYear() - birthDate.getYear();
-        if(now.getDayOfYear() <birthDate.getDayOfYear())
+        if (now.getDayOfYear() < birthDate.getDayOfYear())
             age--;
         return age;
     }
 
 
-    public Person(){
+    public Person() {
 
     }
 
-    public Person(long id, String fullName, String birthDate){
+    public Person(long id, String fullName, String birthDate) {
         setId(id);
         setFullName(fullName);
         setBirthDate(birthDate);
