@@ -1,16 +1,14 @@
 package vsu.netcracker.model;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-import vsu.netcracker.model.Person;
-import vsu.netcracker.util.Sorts;
+import vsu.netcracker.conf.Configurator;
+import vsu.netcracker.sorters.Sorter;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
 public class Repository {
     private Person[] people;
-    private Sorts<Person> sorts;
+    private Sorter<Person> sorter;
 
     /**
      * Get whole array of people
@@ -19,6 +17,14 @@ public class Repository {
      */
     public Person[] getPeople() {
         return people;
+    }
+
+    /**
+     * Set sorter to change sort type
+     * @param sorter sorter to be set
+     */
+    void setSorter(Sorter<Person> sorter){
+        this.sorter = sorter;
     }
 
     /**
@@ -87,22 +93,31 @@ public class Repository {
         return delete(person);
     }
 
-    public void sort(Comparator<Person> comparator, Sorts.SortTypes type) {
-        switch (type) {
-            case QUICK:
-                sorts.quickSort(people, 0, people.length - 1, comparator);
-                break;
-            case BUBBLE:
-                sorts.bubbleSort(people, comparator);
-                break;
-            case INSERTION:
-                sorts.insertionSort(people, comparator);
-                break;
-            default:
-                break;
-        }
+    /**
+     * Sort people using comparator
+     * @param comparator comparator to compare people
+     */
+    public void sort(Comparator<Person> comparator) {
+                sorter.sort(people, comparator);
     }
 
+    public void sortByID(){
+        sort(Comparator.comparing(Person::getId));
+    }
+
+    public void sortByName(){
+        sort(Comparator.comparing(Person::getFullName));
+    }
+
+    public void sortByAge(){
+        sort(Comparator.comparing(Person::getAge));
+    }
+
+    /**
+     * Find all people ho match the predicate
+     * @param predicate predicate to test people
+     * @return new repository with found people
+     */
     public Repository search(Predicate<Person> predicate) {
         Repository newRepository = new Repository();
         for (Person p : people) {
@@ -132,11 +147,6 @@ public class Repository {
 
     public Repository() {
         people = new Person[0];
-        sorts = new Sorts<Person>();
-    }
-
-    public Repository(Repository fromRepository) {
-        this.people = fromRepository.people.clone();
-        this.sorts = fromRepository.sorts;
+        sorter = Configurator.getSorter();
     }
 }
