@@ -1,17 +1,12 @@
 package vsu.netcracker;
 
-import vsu.netcracker.model.Person;
-import vsu.netcracker.model.Repository;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Client {
 /*    private static Scanner in = new Scanner(System.in);
-    private static Repository repository;
+    private static PersonRepository repository;
 
     public static void main(String[] args) {
-        repository = new Repository();
+        repository = new PersonRepository();
         char key = 'c';
 
         while (key != 'q') {
@@ -66,7 +61,7 @@ public class Client {
 
         Person person = new Person();
         try {
-            person.setId(Integer.decode(parts[0]));
+            person.setPassportID(Integer.decode(parts[0]));
             person.setFullName(parts[1] + " " + parts[2]);
             person.setBirthDate(parts[3]);
         } catch (Exception e) {

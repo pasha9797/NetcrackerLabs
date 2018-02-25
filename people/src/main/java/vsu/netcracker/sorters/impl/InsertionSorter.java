@@ -21,4 +21,9 @@ public class InsertionSorter<T> implements Sorter<T> {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "InsertionSorter";
+    }
 }

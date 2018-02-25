@@ -1,5 +1,7 @@
-package vsu.netcracker.model;
+package vsu.netcracker.model.person;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 
@@ -7,16 +9,17 @@ import org.joda.time.format.DateTimeFormat;
  * Person is a class that contains description of person
  */
 public class Person {
-    private long id;
+    private long passportID;
     private String fullName;
     private LocalDate birthDate;
+    private Logger log = LogManager.getLogger(this.getClass());
 
-    public long getId() {
-        return id;
+    public long getPassportID() {
+        return passportID;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPassportID(long passportID) {
+        this.passportID = passportID;
     }
 
     public String getFullName() {
@@ -51,13 +54,13 @@ public class Person {
 
 
     public Person() {
-
     }
 
-    public Person(long id, String fullName, String birthDate) {
-        setId(id);
+    public Person(long passportID, String fullName, String birthDate) {
+        setPassportID(passportID);
         setFullName(fullName);
         setBirthDate(birthDate);
+        log.debug("New person created {}", this.toString());
     }
 
     @Override
@@ -67,18 +70,18 @@ public class Person {
 
         Person person = (Person) o;
 
-        return id == person.id;
+        return passportID == person.passportID;
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return (int) (passportID ^ (passportID >>> 32));
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
+                "passportID=" + passportID +
                 ", full name='" + fullName + '\'' +
                 ", birth date='" + birthDate.toString(DateTimeFormat.forPattern("d MMM YYYY")) +
                 "'}";

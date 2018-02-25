@@ -16,4 +16,9 @@ public class BubbleSorter<T> implements Sorter<T> {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "BubbleSorter";
+    }
 }

@@ -1,4 +1,4 @@
-package vsu.netcracker.model;
+package vsu.netcracker.model.person;
 
 import org.junit.*;
 
@@ -11,7 +11,7 @@ public class PersonTest {
 
         person2 = new Person();
         person2.setFullName("Mickey Mouse");
-        person2.setId(1);
+        person2.setPassportID(1);
         person2.setBirthDate("31-12-1997");
     }
 
@@ -33,7 +33,7 @@ public class PersonTest {
 
     @Test
     public void testGetters() {
-        String str = person1.getId() + " " + person1.getFullName();
+        String str = person1.getPassportID() + " " + person1.getFullName();
         Assert.assertEquals("0 Donald Trump", str);
     }
     @Test

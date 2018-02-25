@@ -35,4 +35,8 @@ public class QuickSorter<T> implements Sorter<T> {
         quickSort(array, cur + 1, end, comparator);
     }
 
+    @Override
+    public String toString() {
+        return "QuickSorter";
+    }
 }
