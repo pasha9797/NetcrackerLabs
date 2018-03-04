@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Netcracker.iml" filepath="$PROJECT_DIR$/Netcracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/matrix/matrix.iml" filepath="$PROJECT_DIR$/matrix/matrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/people/people.iml" filepath="$PROJECT_DIR$/people/people.iml" />
     </modules>
   </component>
