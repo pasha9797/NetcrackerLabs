@@ -19,11 +19,10 @@ public class MatrixMultiplyer {
      */
     public Matrix multiply(Matrix m1, Matrix m2, int threadsAmount) throws Exception {
         //checking that matrices are square and of the same size
-        if (m1.length(0) == m2.length(0) &&
-                m1.length(1) == m2.length(1) &&
-                m1.length(0) == m1.length(1)) {
+        if (m1.length(0) == m2.length(1) &&
+                m1.length(1) == m2.length(0)) {
 
-            Matrix mRes = new Matrix(m1.length(0), m1.length(1));
+            Matrix mRes = new Matrix(m1.length(0), m2.length(1));
             int rowsPerThread = m1.length(0) / threadsAmount;
             List<MatrixMultiplyingThread> threads= new ArrayList<MatrixMultiplyingThread>();
 
@@ -33,7 +32,7 @@ public class MatrixMultiplyer {
                 MatrixMultiplyingThread thread;
 
                 //decide which rows will be calculated by this thread
-                for (int row = i * rowsPerThread; row < ((i == threadsAmount - 1) ? m1.length(0) : (i+1)*rowsPerThread); row++){
+                for (int row = i * rowsPerThread; row < ((i == threadsAmount - 1) ? mRes.length(0) : (i+1)*rowsPerThread); row++){
                     rows.add(row);
                 }
 

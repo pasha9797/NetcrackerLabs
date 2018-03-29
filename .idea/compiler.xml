@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="bankSystem" />
         <module name="matrix" />
         <module name="people" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="bankSystem" target="1.8" />
       <module name="matrix" target="1.8" />
       <module name="Netcracker" target="1.8" />
       <module name="people" target="1.8" />

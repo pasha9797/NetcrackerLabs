@@ -11,7 +11,7 @@ import java.util.*;
 public class Injector {
     private static Logger log = LogManager.getLogger(Injector.class);
 
-    public Object inject(Object o) {
+    public <T> T inject(T o) {
         try {
             Properties prop = getProperties();
             for (Field field : getAllFields(o.getClass())) {

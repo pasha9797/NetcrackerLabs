@@ -3,17 +3,26 @@ package vsu.netcracker.model.car;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Car {
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
+import java.util.Objects;
+
+@XmlRootElement(name = "car")
+public class Car implements Serializable{
     private String licensePlate;
     private String brand;
     private String model;
     private int yearOfIssue;
-    private Logger log = LogManager.getLogger(this.getClass());
+    private transient Logger log = LogManager.getLogger(this.getClass());
 
     public String getLicensePlate() {
         return licensePlate;
     }
 
+    @XmlAttribute
     public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
@@ -22,6 +31,7 @@ public class Car {
         return brand;
     }
 
+    @XmlElement
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -30,6 +40,7 @@ public class Car {
         return model;
     }
 
+    @XmlElement
     public void setModel(String model) {
         this.model = model;
     }
@@ -38,8 +49,24 @@ public class Car {
         return yearOfIssue;
     }
 
+    @XmlElement
     public void setYearOfIssue(int yearOfIssue) {
         this.yearOfIssue = yearOfIssue;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(licensePlate, car.licensePlate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(licensePlate);
     }
 
     public Car(){

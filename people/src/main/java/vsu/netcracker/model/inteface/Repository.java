@@ -1,11 +1,17 @@
 package vsu.netcracker.model.inteface;
 
+import vsu.netcracker.model.AbstractRepository;
+import vsu.netcracker.model.car.CarRepository;
+import vsu.netcracker.model.person.Person;
 import vsu.netcracker.sorters.Sorter;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
-public interface Repository<T> extends Iterable<T>{
+public interface Repository<T> extends Iterable<T>, Serializable{
     /**
      * add element to repository
      * @param element Element to be added

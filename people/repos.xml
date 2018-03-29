@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<car-repository>
+    <elements>
+        <car licensePlate="M346KA">
+            <brand>Toyota</brand>
+            <model>Celica</model>
+            <yearOfIssue>2001</yearOfIssue>
+        </car>
+        <car licensePlate="H538PX">
+            <brand>Lada</brand>
+            <model>Priora</model>
+            <yearOfIssue>2008</yearOfIssue>
+        </car>
+        <car licensePlate="Y104BO">
+            <brand>Subaru</brand>
+            <model>Impreza</model>
+            <yearOfIssue>1999</yearOfIssue>
+        </car>
+    </elements>
+</car-repository>

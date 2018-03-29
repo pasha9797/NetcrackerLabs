@@ -12,9 +12,9 @@ public class MatrixMultiplyingThread extends Thread {
     @Override
     public void run() {
         for (int i : rowsToCalculate) {
-            for (int j = 0; j < m1.length(1); j++) {
+            for (int j = 0; j < m1.length(0); j++) {
                 double res = 0;
-                for (int k = 0; k < m1.length(0); k++) {
+                for (int k = 0; k < m1.length(1); k++) {
                     res += m1.get(i, k) * m2.get(k, j);
                 }
                 mRes.set(i, j, res);

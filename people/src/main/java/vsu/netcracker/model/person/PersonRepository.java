@@ -4,10 +4,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import vsu.netcracker.model.AbstractRepository;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+
+@XmlRootElement(name = "person-repository")
 public class PersonRepository extends AbstractRepository<Person>{
-    private Logger log = LogManager.getLogger(this.getClass());
+    private transient Logger log = LogManager.getLogger(this.getClass());
+
+    public Person[] getElements() {
+        return elements;
+    }
+
+    @XmlElementWrapper()
+    @XmlElement(name = "person")
+    public void setElements(Person[] elements) {
+        this.elements = elements;
+    }
 
     /**
      * Delete person from repository by name

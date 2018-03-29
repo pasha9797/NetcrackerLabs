@@ -56,7 +56,7 @@ public class Matrix {
 
     private boolean checkIndices(int x, int y) throws IndexOutOfBoundsException {
         if (x >= matrix.length || y >= matrix[0].length || x < 0 || y < 0) {
-            String msg = String.format("Matrix indices out of bounds. (%d, %d) max: (%d, %d)", x, y, matrix.length, matrix[0].length);
+            String msg = String.format("Matrix indices out of bounds. (%d, %d) size is: (%d, %d)", x, y, matrix.length, matrix[0].length);
             log.error(msg);
             throw new IndexOutOfBoundsException(msg);
         }

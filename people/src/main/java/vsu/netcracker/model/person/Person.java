@@ -5,19 +5,27 @@ import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
+
 /**
  * Person is a class that contains description of person
  */
-public class Person {
+@XmlRootElement(name = "person")
+public class Person implements Serializable{
     private long passportID;
     private String fullName;
     private LocalDate birthDate;
-    private Logger log = LogManager.getLogger(this.getClass());
+    private transient Logger log = LogManager.getLogger(this.getClass());
 
     public long getPassportID() {
         return passportID;
     }
 
+    @XmlAttribute
     public void setPassportID(long passportID) {
         this.passportID = passportID;
     }
@@ -26,6 +34,7 @@ public class Person {
         return fullName;
     }
 
+    @XmlElement
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -35,8 +44,13 @@ public class Person {
      *
      * @param birthDate string containing birth date
      */
+    @XmlElement
     public void setBirthDate(String birthDate) {
         this.birthDate = LocalDate.parse(birthDate, DateTimeFormat.forPattern("d-M-YYYY"));
+    }
+
+    public String getBirthDate(){
+        return this.birthDate.toString();
     }
 
     /**

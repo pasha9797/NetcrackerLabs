@@ -3,22 +3,31 @@ package vsu.netcracker.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import vsu.netcracker.injection.AutoInjectable;
+import vsu.netcracker.model.car.CarRepository;
 import vsu.netcracker.model.inteface.Repository;
+import vsu.netcracker.model.person.Person;
+import vsu.netcracker.model.person.PersonRepository;
 import vsu.netcracker.sorters.Sorter;
 
+import javax.xml.bind.annotation.*;
+import java.beans.Transient;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Predicate;
 
+@XmlRootElement
+@XmlSeeAlso({CarRepository.class, PersonRepository.class})
+@XmlTransient
 public abstract class AbstractRepository<T> implements Repository<T> {
+
     protected T[] elements;
 
     @AutoInjectable
-    protected Sorter<T> sorter;
+    protected transient Sorter<T> sorter;
 
-    private Logger log = LogManager.getLogger(this.getClass());
+    private transient Logger log = LogManager.getLogger(this.getClass());
 
     @Override
     public void add(T element) {
@@ -41,7 +50,7 @@ public abstract class AbstractRepository<T> implements Repository<T> {
     }
 
     @Override
-    public void delete(int id){
+    public void delete(int id) {
         log.info("Deleting element at index {}: {}", id, elements[id].toString());
         if (id < 0 || id >= elements.length) {
             String msg = String.format("(Delete) Element index (%d) out of bounds (max %d)", id, elements.length);

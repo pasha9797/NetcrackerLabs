@@ -6,12 +6,14 @@ import vsu.netcracker.sorters.impl.*;
 public class CarRepositoryTest {
     private CarRepository carRepository, expected;
     private Car c1, c2, c3;
+    private CarRepositoryFactory factory;
 
     @Before
     public void init() {
         c1 = new Car("M346KA", "Toyota", "Celica", 2001);
         c2 = new Car("H538PX", "Lada", "Priora", 2008);
         c3 = new Car("Y104BO", "Subaru", "Impreza", 1999);
+        factory = new CarRepositoryFactory();
     }
 
     @After
@@ -22,12 +24,14 @@ public class CarRepositoryTest {
         c1 = null;
         c2 = null;
         c3 = null;
+
+        factory=null;
     }
 
     @Test
     public void testSortByLicencePlate() {
-        carRepository = CarRepositoryFactory.newInstance();
-        expected = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
+        expected = factory.newInstance();
 
         carRepository.setSorter(new BubbleSorter<>());
 
@@ -46,8 +50,8 @@ public class CarRepositoryTest {
 
     @Test
     public void testSortByBrand() {
-        carRepository = CarRepositoryFactory.newInstance();
-        expected = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
+        expected = factory.newInstance();
 
         carRepository.setSorter(new InsertionSorter<>());
 
@@ -66,8 +70,8 @@ public class CarRepositoryTest {
 
     @Test
     public void testSortByModel() {
-        carRepository = CarRepositoryFactory.newInstance();
-        expected = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
+        expected = factory.newInstance();
 
         carRepository.setSorter(new QuickSorter<>());
 
@@ -86,8 +90,8 @@ public class CarRepositoryTest {
 
     @Test
     public void testSortByYearOfIssue() {
-        carRepository = CarRepositoryFactory.newInstance();
-        expected = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
+        expected = factory.newInstance();
 
         carRepository.setSorter(new QuickSorter<>());
 
@@ -107,8 +111,8 @@ public class CarRepositoryTest {
 
     @Test
     public void testSearch() {
-        carRepository = CarRepositoryFactory.newInstance();
-        expected = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
+        expected = factory.newInstance();
 
         carRepository.add(c1);
         carRepository.add(c2);
@@ -123,8 +127,8 @@ public class CarRepositoryTest {
 
     @Test
     public void testDelete() {
-        carRepository = CarRepositoryFactory.newInstance();
-        expected = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
+        expected = factory.newInstance();
 
         carRepository.add(c1);
         carRepository.add(c2);
@@ -140,7 +144,7 @@ public class CarRepositoryTest {
 
     @Test
     public void testIterator() {
-        carRepository = CarRepositoryFactory.newInstance();
+        carRepository = factory.newInstance();
 
         carRepository.add(c1);
         carRepository.add(c2);

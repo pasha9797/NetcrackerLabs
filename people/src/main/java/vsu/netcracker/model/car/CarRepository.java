@@ -4,10 +4,25 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import vsu.netcracker.model.AbstractRepository;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Comparator;
 
+@XmlRootElement(name = "car-repository")
 public class CarRepository extends AbstractRepository<Car> {
-    private Logger log = LogManager.getLogger(this.getClass());
+    private transient Logger log = LogManager.getLogger(this.getClass());
+
+    public Car[] getElements() {
+        return elements;
+    }
+
+    @XmlElementWrapper()
+    @XmlElement(name = "car")
+    public void setElements(Car[] elements) {
+        this.elements = elements;
+    }
 
     @Override
     protected Class getClassDef() {
